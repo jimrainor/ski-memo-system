@@ -1,3 +1,18 @@
-<p>
-  search-table works!
-</p>
+<p-table [columns]="cols" [value]="items" selectionMode="single" [(selection)]="item">
+  <ng-template pTemplate="caption">
+    ski
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns">
+              {{col.header}}
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item let-columns="columns">
+    <tr [pSelectableRow]="item">
+          <td *ngFor="let col of columns">
+          {{item[col.field]}}
+          </td>
+      </tr>
+  </ng-template>
