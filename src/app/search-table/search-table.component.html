@@ -1,8 +1,9 @@
 <p-panel>
     <p-header>
         <div class="ui-helper-clearfix">
-            <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">スキー日程一覧</span>
-            <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()" [model]="menuItem"></p-splitButton>
+            <span class="ui-panel-title" style="font-size:16px;display:inline-block;margin-top:2px">日程</span>
+            <p-splitButton [style]="{'float':'right'}" label="Save" icon="pi pi-check" (onClick)="save()"
+                [model]="menuItem"></p-splitButton>
         </div>
     </p-header>
     <p-table [columns]="cols" [value]="items" selectionMode="single" [(selection)]="item">
@@ -11,17 +12,81 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
+                <th>
+                    更新
+                </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-item let-columns="columns">
+        <ng-template pTemplate="body" let-item let-columnsData="columns" let-rowIndex="rowIndex">
             <tr [pSelectableRow]="item">
-                <td *ngFor="let col of columns">
-                    {{item[col.field]}}
+                <td *ngFor="let col1 of columnsData">
+                    {{item[col1.field]}}
+                </td>
+                <td>
+                    <p-button label="更新" icon="pi pi-info pi-info-circle" iconPos="left"
+                        (click)="showSelectedData(item, ronwIndex)"></p-button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
     <p-footer>
-        Footer Place Holder
     </p-footer>
 </p-panel>
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    [style]="{width: '300px'}">
+    <div class="ui-g ui-fluid" *ngIf="itemSelected">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="date_start">date_start</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="date_start" [(ngModel)]="itemSelected.date_start" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="date_end">date_end</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="date_end" [(ngModel)]="itemSelected.date_end" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="costmoney">costmoney</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="costmoney" [(ngModel)]="itemSelected.costmoney" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="placename">placename</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="placename" [(ngModel)]="itemSelected.placename" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="hotel">hotel</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="hotel" [(ngModel)]="itemSelected.hotel" />
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="menber">menber</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="menber" [(ngModel)]="itemSelected.menber" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>

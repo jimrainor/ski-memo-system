@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SearchTableComponent } from './search-table/search-table.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: SearchTableComponent },
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

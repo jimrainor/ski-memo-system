@@ -5,10 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SkiService {
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
     skimemo_path = './assets/ski-memo.json';
 
-    getSkiitem() : Observable<any>{
-        return this.httpClient.get(this.skimemo_path);
+    getSkiitem() {
+        return this.httpClient.get<any>(this.skimemo_path)
+            .toPromise()
+            .then(data => data);
     }
 }
