@@ -1,6 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { map } from 'rxjs/internal/operators/map';
+import { retry } from 'rxjs/internal/operators/retry';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { finalize } from 'rxjs/internal/operators/finalize';
 
 @Injectable()
 export class SkiService {
@@ -9,31 +14,44 @@ export class SkiService {
 
     constructor(private httpClient: HttpClient) { }
 
-    private httpOptions: any = {
-        // ヘッダ情報
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        }),
-        observe: 'body',
-        // DELETE 実行時に `body` が必要になるケースがあるのでプロパティとして用意しておく
-        // ( ここで用意しなくても追加できるけど... )
-        body: null
-    };
+    getSkiitem(): Observable<HttpResponse<any>> {
+        const apiUrl = `${environment.restBaseUrl}/trip/selectList`;
+ 
+        const options = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }),
+            observe: 'response' as 'response',
+            params: undefined,
+            withCredentials: true
+        };
 
-    getSkiitem() {
+        return this.httpClient.get(apiUrl, options).pipe(
+            retry(environment.restRetry),
+            map((res: HttpResponse<Object>) => this.handleResponse(res)),
+        );
 
-        return this.httpClient.get<any>(this.skimemo_path, this.httpOptions)
-            .toPromise()
-            .then((data) => {
-                console.log('getSkiitem data:');
-                console.log(data);
-                return data;
-            });
+        // return this.httpClient.get<any>(this.skimemo_path, this.httpOptions)
+        //     .toPromise()
+        //     .then((data) => {
+        //         console.log('getSkiitem data:');
+        //         console.log(data);
+        //         return data;
+        //     });
     }
 
     writeSkiitem(data) {
+        const apiUrl = `${environment.restBaseUrl}/trip/updateTripInfo`;
+
+
         console.log('writeSkiitem data:');
         console.log(data);
         return this.httpClient.post(this.skimemo_path, JSON.stringify(data));
+    }
+
+    private handleResponse(res: HttpResponse<Object>): any {
+        return { headers: res.headers, body: res.body || '' };
+    }
+
+    private handleHttpError(error: HttpErrorResponse): any {
+        throw error;
     }
 }

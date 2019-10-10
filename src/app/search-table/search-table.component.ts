@@ -53,8 +53,10 @@ export class SearchTableComponent implements OnInit {
   }
 
   getListData() {
-    this.skiService.getSkiitem().then(data => {
-      this.items = data;
+    this.skiService.getSkiitem().subscribe(res => {
+      if (res) {
+        return res['body'].data ? this.items = res['body'].data : this.items = res['body'];
+      }
     });
   }
 
