@@ -17,14 +17,14 @@
                 </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-item let-columnsData="columns" let-rowIndex="rowIndex">
+        <ng-template pTemplate="body" let-item let-columnsData="columns" let-i="rowIndex">
             <tr [pSelectableRow]="item">
                 <td *ngFor="let col1 of columnsData">
                     {{item[col1.field]}}
                 </td>
                 <td>
                     <p-button label="更新" icon="pi pi-info pi-info-circle" iconPos="left"
-                        (click)="showSelectedData(item, ronwIndex)"></p-button>
+                        (click)="showSelectedData(item, i)"></p-button>
                 </td>
             </tr>
         </ng-template>
@@ -86,7 +86,7 @@
     </div>
     <p-footer>
         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+            <button type="button" pButton icon="fa fa-check" (click)="saveData()" label="保存"></button>
         </div>
     </p-footer>
 </p-dialog>

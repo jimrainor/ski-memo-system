@@ -3,6 +3,7 @@ import { SkiItemInfo } from './ski-item.class';
 import { SkiService } from './ski-service';
 import { MenuItem } from 'primeng/api';
 import { MessageService } from './messageService';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-search-table',
@@ -12,7 +13,7 @@ import { MessageService } from './messageService';
 export class SearchTableComponent implements OnInit {
 
   private menuItem: MenuItem[];
-  private items: Array<SkiItemInfo>;
+  private items: Array<SkiItemInfo> | any;
   private itemSelected: SkiItemInfo;
   private cols: any[];
 
@@ -30,10 +31,8 @@ export class SearchTableComponent implements OnInit {
       { field: 'placename', header: '場所', styleString: 'width: 25%' },
       { field: 'menber', header: '人員', styleString: '' }
     ];
-    this.skiService.getSkiitem().then(data => {
-      this.items = data;
-      console.log(data);
-    });
+
+    this.getListData();
 
     this.menuItem = [
       {
@@ -53,26 +52,25 @@ export class SearchTableComponent implements OnInit {
     this.itemSelected = new SkiItemInfo();
   }
 
+  getListData() {
+    this.skiService.getSkiitem().then(data => {
+      this.items = data;
+    });
+  }
+
   showSelectedData(item: SkiItemInfo, index: any) {
     console.log(item);
     console.log('index=' + index);
-    // date_start: string;
-    // date_end: string;
-    // costmoney: string;
-    // placename: string;
-    // hotel: string;
-    // menber: string;
 
-    this.itemSelected = this.cloneSkiItemInfo(item);
+    this.itemSelected = _.cloneDeep(item);
     this.index = index;
     this.displayDialog = true;
   }
 
-  cloneSkiItemInfo(skiItemInfo: SkiItemInfo): SkiItemInfo {
-    let car = new SkiItemInfo();
-    for (let prop in skiItemInfo) {
-      car[prop] = skiItemInfo[prop];
-    }
-    return car;
+  saveData() {
+    this.items[this.index] = this.itemSelected;
+    this.skiService.writeSkiitem(this.items);
+
+    this.getListData();
   }
 }
