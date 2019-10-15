@@ -16,7 +16,7 @@ export class SkiService {
 
     getSkiitem(): Observable<HttpResponse<any>> {
         const apiUrl = `${environment.restBaseUrl}/trip/selectList`;
- 
+
         const options = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }),
             observe: 'response' as 'response',
@@ -41,10 +41,16 @@ export class SkiService {
     writeSkiitem(data) {
         const apiUrl = `${environment.restBaseUrl}/trip/updateTripInfo`;
 
+        const options = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }),
+        };
 
-        console.log('writeSkiitem data:');
-        console.log(data);
-        return this.httpClient.post(this.skimemo_path, JSON.stringify(data));
+        return this.httpClient.post(apiUrl, data, options)
+            .pipe(retry(environment.restRetry),
+                map((res: HttpResponse<Object>) => this.handleResponse(res)),
+                catchError((error: HttpErrorResponse) => this.handleHttpError(error)),
+                finalize(() => {
+                }));
     }
 
     private handleResponse(res: HttpResponse<Object>): any {

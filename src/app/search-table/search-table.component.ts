@@ -13,7 +13,7 @@ import * as _ from 'lodash';
 export class SearchTableComponent implements OnInit {
 
   private menuItem: MenuItem[];
-  private items: Array<SkiItemInfo> | any;
+  private items: Array<SkiItemInfo>;
   private itemSelected: SkiItemInfo;
   private cols: any[];
 
@@ -25,15 +25,15 @@ export class SearchTableComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'date_start', header: '日付開始', styleString: 'width: 15%' },
-      { field: 'date_end', header: '日付終了', styleString: 'width: 15%' },
+      { field: 'startDate', header: '日付開始', styleString: 'width: 15%' },
+      { field: 'endDate', header: '日付終了', styleString: 'width: 15%' },
       { field: 'costmoney', header: 'コスト', styleString: 'width: 10%' },
       { field: 'placename', header: '場所', styleString: 'width: 25%' },
       { field: 'menber', header: '人員', styleString: '' }
     ];
 
     this.getListData();
-
+    
     this.menuItem = [
       {
         label: 'Update', icon: 'pi pi-refresh', command: () => {
@@ -73,6 +73,13 @@ export class SearchTableComponent implements OnInit {
     this.items[this.index] = this.itemSelected;
     this.skiService.writeSkiitem(this.items);
 
-    this.getListData();
+    // this.getListData();
+
+    this.displayDialog = false;
+  }
+
+  // html event
+  addNewLine() {
+    this.items.push(new SkiItemInfo());
   }
 }

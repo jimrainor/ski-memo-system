@@ -10,3 +10,7 @@ body .ui-table .ui-table-summary{
     padding: 0.571em 1em;
     text-align: left!important;
 }
+
+.buttonFirst {
+  margin-right: 1em;
+}
