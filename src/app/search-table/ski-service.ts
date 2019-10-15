@@ -2,23 +2,19 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angul
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { map } from 'rxjs/internal/operators/map';
-import { retry } from 'rxjs/internal/operators/retry';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { finalize } from 'rxjs/internal/operators/finalize';
+import { map, catchError, retry, finalize } from 'rxjs/operators';
 
 @Injectable()
 export class SkiService {
 
-    skimemo_path = './assets/ski-memo.json';
+    // skimemo_path = './assets/ski-memo.json';
 
     constructor(private httpClient: HttpClient) { }
 
     getSkiitem(): Observable<HttpResponse<any>> {
         const apiUrl = `${environment.restBaseUrl}/trip/selectList`;
- 
+
         const options = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }),
             observe: 'response' as 'response',
             params: undefined,
             withCredentials: true
@@ -28,23 +24,20 @@ export class SkiService {
             retry(environment.restRetry),
             map((res: HttpResponse<Object>) => this.handleResponse(res)),
         );
-
-        // return this.httpClient.get<any>(this.skimemo_path, this.httpOptions)
-        //     .toPromise()
-        //     .then((data) => {
-        //         console.log('getSkiitem data:');
-        //         console.log(data);
-        //         return data;
-        //     });
     }
 
     writeSkiitem(data) {
+        const options = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=UTF-8' }),
+            observe: 'response' as 'response',
+            params: null,
+            withCredentials: true
+        };
+
         const apiUrl = `${environment.restBaseUrl}/trip/updateTripInfo`;
 
-
-        console.log('writeSkiitem data:');
-        console.log(data);
-        return this.httpClient.post(this.skimemo_path, JSON.stringify(data));
+        console.log('^^^^^^^^^^^^^^^^^^^writeSkiitem post START^^^^^^^^^^^^^^^');
+        return this.httpClient.post(apiUrl, data, options);
     }
 
     private handleResponse(res: HttpResponse<Object>): any {

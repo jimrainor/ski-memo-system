@@ -25,8 +25,8 @@ export class SearchTableComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'date_start', header: '日付開始', styleString: 'width: 15%' },
-      { field: 'date_end', header: '日付終了', styleString: 'width: 15%' },
+      { field: 'startdate', header: '日付開始', styleString: 'width: 15%' },
+      { field: 'enddate', header: '日付終了', styleString: 'width: 15%' },
       { field: 'costmoney', header: 'コスト', styleString: 'width: 10%' },
       { field: 'placename', header: '場所', styleString: 'width: 25%' },
       { field: 'menber', header: '人員', styleString: '' }
@@ -70,9 +70,15 @@ export class SearchTableComponent implements OnInit {
   }
 
   saveData() {
-    this.items[this.index] = this.itemSelected;
-    this.skiService.writeSkiitem(this.items);
-
+    Promise.all([
+      this.skiService.writeSkiitem(this.itemSelected).subscribe(
+        val => {
+          console.log('result:' + val);
+        },
+        err => {
+          console.log(err);
+        })
+    ]);
     this.getListData();
   }
 }
