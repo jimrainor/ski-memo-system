@@ -1,6 +1,6 @@
 export class SkiItemInfo {
-    startdate: string;
-    enddate: string;
+    startdate: any;
+    enddate: any;
     costmoney: string;
     placename: string;
     hotel: string;

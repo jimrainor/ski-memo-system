@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { SkiItemInfo } from './ski-item.class';
 import { SkiService } from './ski-service';
 import { MenuItem } from 'primeng/api';
@@ -17,11 +18,16 @@ export class SearchTableComponent implements OnInit {
   private itemSelected: SkiItemInfo;
   private cols: any[];
 
+  private readonly yearRage = '2017:2027';
+
+  private readonly dateFormat = 'yyyy-MM-dd';
+
   displayDialog: any;
   index: any;
 
   constructor(private skiService: SkiService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    @Inject(LOCALE_ID) private locale: string) { }
 
   ngOnInit() {
     this.cols = [
@@ -55,7 +61,7 @@ export class SearchTableComponent implements OnInit {
   getListData() {
     this.skiService.getSkiitem().subscribe(res => {
       if (res) {
-        return res['body'].data ? this.items = res['body'].data : this.items = res['body'];
+        res['body'].data ? this.items = res['body'].data : this.items = res['body'];
       }
     });
   }
@@ -65,6 +71,16 @@ export class SearchTableComponent implements OnInit {
     console.log('index=' + index);
 
     this.itemSelected = _.cloneDeep(item);
+    try {
+      this.itemSelected.startdate = formatDate(this.itemSelected.startdate, this.dateFormat, this.locale);
+      this.itemSelected.enddate = formatDate(this.itemSelected.enddate, this.dateFormat, this.locale);
+    } catch (e) {
+      console.log('this.itemSelected.startdate:' + this.itemSelected.startdate);
+      console.log('this.itemSelected.enddate:' + this.itemSelected.enddate);
+      this.itemSelected.startdate = formatDate(new Date(), this.dateFormat, this.locale);
+      this.itemSelected.enddate = formatDate(new Date(), this.dateFormat, this.locale);
+    }
+
     this.index = index;
     this.displayDialog = true;
   }
@@ -74,11 +90,13 @@ export class SearchTableComponent implements OnInit {
       this.skiService.writeSkiitem(this.itemSelected).subscribe(
         val => {
           console.log('result:' + val);
+          this.getListData();
         },
         err => {
           console.log(err);
         })
     ]);
-    this.getListData();
+
+    this.displayDialog = false;
   }
 }

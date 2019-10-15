@@ -13,6 +13,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
 import { SearchTableComponent } from './search-table/search-table.component';
 import { SkiService } from './search-table/ski-service';
 import { MessageService } from './search-table/messageService';
@@ -35,7 +36,8 @@ import { MessageService } from './search-table/messageService';
     SplitButtonModule,
     ButtonModule,
     DialogModule,
-    InputTextModule
+    CalendarModule,
+    InputTextModule,
   ],
   providers: [
     SkiService,

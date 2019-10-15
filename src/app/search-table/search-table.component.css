@@ -1,12 +1,36 @@
-.textleft
-{
-  text-align:left!important;
+.textleft {
+  text-align: left!important;
 }
-body .ui-table .ui-table-caption,
-body .ui-table .ui-table-summary{
-    background-color: #f4f4f4;
-    color: #333333;
-    border: 1px solid #c8c8c8;
-    padding: 0.571em 1em;
-    text-align: left!important;
+
+body .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
+  background-color: #f4f4f4;
+  color: #333333;
+  border: 1px solid #c8c8c8;
+  padding: 0.571em 1em;
+  text-align: left!important;
+}
+
+.no-overflow-div {
+  overflow: hidden;
+}
+
+.titleDIV {
+  text-align: right;
+}
+
+div>>>.ui-datepicker {
+  width: 30%;
+  margin: 0em;
+}
+
+div>>>.ui-datepicker table {
+  margin: 0em;
+}
+
+div>>>.ui-datepicker table td {
+  padding: 0em;
+}
+
+p-dialog>>>.ui-dialog {
+  width: 60%;
 }

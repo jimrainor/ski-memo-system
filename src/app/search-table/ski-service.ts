@@ -37,6 +37,8 @@ export class SkiService {
         const apiUrl = `${environment.restBaseUrl}/trip/updateTripInfo`;
 
         console.log('^^^^^^^^^^^^^^^^^^^writeSkiitem post START^^^^^^^^^^^^^^^');
+        console.log(data);
+
         return this.httpClient.post(apiUrl, data, options);
     }
 
