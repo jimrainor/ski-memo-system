@@ -37,56 +37,56 @@
     <p-footer>
     </p-footer>
 </p-panel>
-<p-dialog header="詳細情報" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+<p-dialog header="詳細情報" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" baseZIndex="1"
     resizable="true">
     <div class="ui-g ui-fluid no-overflow-div" *ngIf="itemSelected">
         <div class="ui-g-12">
-            <div class="ui-g-4 titleDIV">
+            <div class="ui-md-4 titleDIV">
                 <span>startdate</span>
             </div>
-            <div class="ui-g-8">
-                <p-calendar [(ngModel)]="itemSelected.startdate" dateFormat="yy-mm-dd" [showIcon]="true" dataType="string"
-                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" autoZIndex="true"></p-calendar>
+            <div class="ui-g-12 ui-md-8">
+                <p-calendar [(ngModel)]="itemSelected.startdate" dateFormat="yy-mm-dd" dataType="string"
+                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" [readonlyInput]="true"></p-calendar>
             </div>
         </div>
         <div class="ui-g-12">
-            <div class="ui-g-4 titleDIV">
+            <div class="ui-md-4 titleDIV">
                 <span>enddate</span>
             </div>
-            <div class="ui-g-8">
-                <p-calendar [(ngModel)]="itemSelected.enddate" dateFormat="yy-mm-dd" [showIcon]="true" dataType="string"
-                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" autoZIndex="true"></p-calendar>
+            <div class="ui-g-12 ui-md-8">
+                <p-calendar [(ngModel)]="itemSelected.enddate" dateFormat="yy-mm-dd" dataType="string"
+                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" [readonlyInput]="true"></p-calendar>
             </div>
         </div>
         <div class="ui-g-12">
-            <div class="ui-g-4 titleDIV">
+            <div class="ui-g-12 ui-md-4 titleDIV">
                 <label for="costmoney">costmoney</label>
             </div>
-            <div class="ui-g-8">
+            <div class="ui-g-12 ui-md-8">
                 <input pInputText id="costmoney" [(ngModel)]="itemSelected.costmoney" />
             </div>
         </div>
         <div class="ui-g-12">
-            <div class="ui-g-4 titleDIV">
+            <div class="ui-g-12 ui-md-4 titleDIV">
                 <label for="placename">placename</label>
             </div>
-            <div class="ui-g-8">
+            <div class="ui-g-12 ui-md-8">
                 <input pInputText id="placename" [(ngModel)]="itemSelected.placename" />
             </div>
         </div>
         <div class="ui-g-12">
-            <div class="ui-g-4 titleDIV">
+            <div class="ui-g-12 ui-md-4 titleDIV">
                 <label for="hotel">hotel</label>
             </div>
-            <div class="ui-g-8">
+            <div class="ui-g-12 ui-md-8">
                 <input pInputText id="hotel" [(ngModel)]="itemSelected.hotel" />
             </div>
         </div>
         <div class="ui-g-12">
-            <div class="ui-g-4 titleDIV">
+            <div class="ui-g-12 ui-md-4 titleDIV">
                 <label for="menber">menber</label>
             </div>
-            <div class="ui-g-8">
+            <div class="ui-g-12 ui-md-8">
                 <input pInputText id="menber" [(ngModel)]="itemSelected.menber" />
             </div>
         </div>
