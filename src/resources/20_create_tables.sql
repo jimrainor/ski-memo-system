@@ -13,8 +13,8 @@ CREATE TABLE trip_detail(
     updated_datetime timestamp(3) with time zone DEFAULT current_timestamp,
     PRIMARY KEY(uuid)
 );
-COMMENT ON TABLE detail IS '明細';
-COMMENT ON COLUMN detail.created_user_id IS '作成ユーザID';
-COMMENT ON COLUMN detail.created_datetime IS '作成日時';
-COMMENT ON COLUMN detail.updated_user_id IS '更新ユーザID';
-COMMENT ON COLUMN detail.updated_datetime IS '更新日時';
+COMMENT ON TABLE trip_detail IS '明細';
+COMMENT ON COLUMN trip_detail.created_user_id IS '作成ユーザID';
+COMMENT ON COLUMN trip_detail.created_datetime IS '作成日時';
+COMMENT ON COLUMN trip_detail.updated_user_id IS '更新ユーザID';
+COMMENT ON COLUMN trip_detail.updated_datetime IS '更新日時';

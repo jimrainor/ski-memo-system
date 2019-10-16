@@ -14,7 +14,7 @@ import * as _ from 'lodash';
 export class SearchTableComponent implements OnInit {
 
   private menuItem: MenuItem[];
-  private items: Array<SkiItemInfo> | any;
+  private items: Array<SkiItemInfo>;
   private itemSelected: SkiItemInfo;
   private cols: any[];
 
@@ -98,5 +98,10 @@ export class SearchTableComponent implements OnInit {
     ]);
 
     this.displayDialog = false;
+  }
+
+  // html event
+  addNewLine() {
+    this.items.push(new SkiItemInfo());
   }
 }

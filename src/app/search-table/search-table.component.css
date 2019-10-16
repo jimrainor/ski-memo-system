@@ -1,7 +1,3 @@
-.textleft {
-  text-align: left!important;
-}
-
 body .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
   background-color: #f4f4f4;
   color: #333333;
@@ -33,4 +29,12 @@ div>>>.ui-datepicker table td {
 
 p-dialog>>>.ui-dialog {
   width: 60%;
+}
+
+.textleft {
+  text-align: left!important;
+}
+
+.buttonFirst {
+  margin-right: 1em;
 }
