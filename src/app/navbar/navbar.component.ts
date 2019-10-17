@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'スキー記録一覧', icon: 'pi pi-table' },
+      { label: '記録一覧', icon: 'pi pi-table' },
       { label: '選択２', icon: 'pi pi-wifi' },
       { label: '選択３', icon: 'pi pi-list' },
       { label: '選択４', icon: 'pi pi-align-center' },
