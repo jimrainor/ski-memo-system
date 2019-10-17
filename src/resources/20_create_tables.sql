@@ -7,6 +7,7 @@ CREATE TABLE trip_detail(
     placename varchar(100),
     hotel varchar(100),
     menber varchar(100),
+    book_no varchar(100),
     created_user_id varchar(32),
     created_datetime timestamp(3) with time zone DEFAULT current_timestamp,
     updated_user_id varchar(32),

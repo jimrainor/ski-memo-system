@@ -1,7 +1,7 @@
 [
   {
-    "date_start": "2018/12/21",
-    "date_end": "2018/12/23",
+    "startdate": "2018/12/21",
+    "enddate": "2018/12/23",
     "costmoney": "63200",
     "placename": "戸狩温泉",
     "hotel": "レシェント",
@@ -9,8 +9,8 @@
     "menber": "4"
   },
   {
-    "date_start": "2018/12/31",
-    "date_end": "2018/12/31",
+    "startdate": "2018/12/31",
+    "enddate": "2018/12/31",
     "costmoney": "4400",
     "placename": "ノルン水上スキー場",
     "hotel": "-",
@@ -18,8 +18,8 @@
     "menber": "1"
   },
   {
-    "date_start": "2019/01/02",
-    "date_end": "2019/01/02",
+    "startdate": "2019/01/02",
+    "enddate": "2019/01/02",
     "costmoney": "5900",
     "placename": "たんばらスキーパーク",
     "hotel": "-",
@@ -27,8 +27,8 @@
     "menber": "1"
   },
   {
-    "date_start": "2019/01/20",
-    "date_end": "2019/01/20",
+    "startdate": "2019/01/20",
+    "enddate": "2019/01/20",
     "costmoney": "38600",
     "placename": "ハンターマウンテン塩原",
     "hotel": "-",
@@ -36,8 +36,8 @@
     "menber": "4"
   },
   {
-    "date_start": "2019/02/03",
-    "date_end": "2019/02/03",
+    "startdate": "2019/02/03",
+    "enddate": "2019/02/03",
     "costmoney": "121300",
     "placename": "岩原スキー場",
     "hotel": "-",
@@ -45,8 +45,8 @@
     "menber": "8"
   },
   {
-    "date_start": "2019/02/17",
-    "date_end": "2019/02/17",
+    "startdate": "2019/02/17",
+    "enddate": "2019/02/17",
     "costmoney": "27600",
     "placename": "奥利根スノーパーク",
     "hotel": "-",
