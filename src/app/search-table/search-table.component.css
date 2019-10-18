@@ -10,12 +10,26 @@ body .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
   overflow: hidden;
 }
 
-.titleDIV {
-  text-align: left;
+@media screen and (min-width: 40.063em) {
+  .titleDIV {
+    text-align: right;
+    font-weight: bold;
+    margin-top: .5em;
+  }
+}
+
+@media not screen and (min-width: 40.063em) {
+  .titleDIV {
+    text-align: left;
+    font-weight: bold;
+  }
+}
+div{
+  padding-top: 0em;
+  padding-bottom: 0.5em;
 }
 
 div>>>.ui-datepicker {
-  width: 30%;
   margin: 0em;
 }
 
@@ -28,7 +42,16 @@ div>>>.ui-datepicker table td {
 }
 
 p-dialog>>>.ui-dialog {
-  min-width: 700px;
+  max-width: 700px;
+  min-width: 280px;
+}
+
+p-dialog>>>.ui-calendar {
+  max-width: 300px;
+}
+
+p-dialog>>>.ui-inputtext {
+  max-width: 300px;
 }
 
 .textleft {
