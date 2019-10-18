@@ -1,3 +1,6 @@
+CREATE SCHEMA developx;
+SET search_path TO developx;
+
 DROP TABLE IF EXISTS trip_detail CASCADE;
 CREATE TABLE trip_detail(
     uuid varchar(32) NOT NULL,

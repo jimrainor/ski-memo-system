@@ -3,7 +3,8 @@ import { formatDate } from '@angular/common';
 import { SkiItemInfo } from './ski-item.class';
 import { SkiService } from './ski-service';
 import { MenuItem } from 'primeng/api';
-import { MessageService } from './messageService';
+import { MessageService, Message } from 'primeng/api';
+
 import * as _ from 'lodash';
 
 @Component({
@@ -14,13 +15,13 @@ import * as _ from 'lodash';
 export class SearchTableComponent implements OnInit {
 
   private menuItem: MenuItem[];
-  private items: Array<SkiItemInfo>;
-  private itemSelected: SkiItemInfo;
-  private cols: any[];
+  items: Array<SkiItemInfo>;
+  itemSelected: SkiItemInfo;
+  cols: any[];
 
-  private readonly yearRage = '2017:2027';
+  readonly yearRage = '2017:2027';
 
-  private readonly dateFormat = 'yyyy-MM-dd';
+  readonly dateFormat = 'yyyy-MM-dd';
 
   displayDialog: any;
   index: any;
@@ -59,11 +60,24 @@ export class SearchTableComponent implements OnInit {
   }
 
   getListData() {
-    this.skiService.getSkiitem().subscribe(res => {
-      if (res) {
-        res['body'].data ? this.items = res['body'].data : this.items = res['body'];
-      }
-    });
+    this.skiService.getSkiitem().subscribe(
+      res => {
+        if (res) {
+          res['body'].data ? this.items = res['body'].data : this.items = res['body'];
+        }
+      },
+      err => {
+        if (err && err.error && err.error.status) {
+          if (err.error.status == 500) {
+            this.messageService.add({ severity: 'error', summary: 'ERROR', detail: 'API側ERRORが発生しました。' });
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'ERROR', detail: 'status:' + err.error.status });
+          }
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'ERROR', detail: 'API側の応答がありません。' });
+        }
+        console.log(err);
+      });
   }
 
   showSelectedData(item: SkiItemInfo, index: any) {
@@ -102,6 +116,7 @@ export class SearchTableComponent implements OnInit {
 
   // html event
   addNewLine() {
-    this.items.push(new SkiItemInfo());
+    this.itemSelected = new SkiItemInfo();
+    this.displayDialog = true;
   }
 }

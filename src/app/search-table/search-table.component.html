@@ -11,7 +11,7 @@
             </div>
         </div>
     </p-header>
-    <p-table [columns]="cols" [value]="items" selectionMode="single" [(selection)]="item">
+    <p-table [columns]="cols" [value]="items" selectionMode="single">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns">
@@ -41,7 +41,7 @@
     <div class="ui-g ui-fluid no-overflow-div" *ngIf="itemSelected">
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-4 titleDIV">
-                <span>startdate</span>
+                <span>開始日付</span>
             </div>
             <div class="ui-g-12 ui-md-8">
                 <p-calendar [(ngModel)]="itemSelected.startdate" dateFormat="yy-mm-dd" dataType="string"
@@ -50,7 +50,7 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-4 titleDIV">
-                <span>enddate</span>
+                <span>終了日付</span>
             </div>
             <div class="ui-g-12 ui-md-8">
                 <p-calendar [(ngModel)]="itemSelected.enddate" dateFormat="yy-mm-dd" dataType="string"
@@ -59,7 +59,7 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-4 titleDIV">
-                <label for="costmoney">costmoney</label>
+                <label for="costmoney">コスト（円）</label>
             </div>
             <div class="ui-g-12 ui-md-8">
                 <input pInputText id="costmoney" [(ngModel)]="itemSelected.costmoney" />
@@ -67,7 +67,7 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-4 titleDIV">
-                <label for="placename">placename</label>
+                <label for="placename">場所</label>
             </div>
             <div class="ui-g-12 ui-md-8">
                 <input pInputText id="placename" [(ngModel)]="itemSelected.placename" />
@@ -75,7 +75,7 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-4 titleDIV">
-                <label for="hotel">hotel</label>
+                <label for="hotel">ホテル</label>
             </div>
             <div class="ui-g-12 ui-md-8">
                 <input pInputText id="hotel" [(ngModel)]="itemSelected.hotel" />
@@ -83,7 +83,7 @@
         </div>
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-4 titleDIV">
-                <label for="menber">menber</label>
+                <label for="menber">人数</label>
             </div>
             <div class="ui-g-12 ui-md-8">
                 <input pInputText id="menber" [(ngModel)]="itemSelected.menber" />

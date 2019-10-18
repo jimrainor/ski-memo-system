@@ -16,7 +16,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { SearchTableComponent } from './search-table/search-table.component';
 import { SkiService } from './search-table/ski-service';
-import { MessageService } from './search-table/messageService';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MessageService } from './search-table/messageService';
     DialogModule,
     CalendarModule,
     InputTextModule,
+    ToastModule,
   ],
   providers: [
     SkiService,
