@@ -32,11 +32,11 @@ export class SearchTableComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'startdate', header: '日付開始', styleString: 'width: 15%' },
-      { field: 'enddate', header: '日付終了', styleString: 'width: 15%' },
-      { field: 'costmoney', header: 'コスト', styleString: 'width: 10%' },
-      { field: 'placename', header: '場所', styleString: 'width: 25%' },
-      { field: 'menber', header: '人員', styleString: '' }
+      { field: 'startdate', header: '開始日付'},
+      { field: 'enddate', header: '終了日付'},
+      { field: 'costmoney', header: 'コスト'},
+      { field: 'placename', header: '場所'},
+      { field: 'menber', header: '人員'}
     ];
 
     this.getListData();
