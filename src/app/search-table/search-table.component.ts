@@ -26,17 +26,19 @@ export class SearchTableComponent implements OnInit {
   displayDialog: any;
   index: any;
 
+  summaryZW = 0;
+
   constructor(private skiService: SkiService,
     private messageService: MessageService,
     @Inject(LOCALE_ID) private locale: string) { }
 
   ngOnInit() {
     this.cols = [
-      { field: 'startdate', header: '開始日付'},
-      { field: 'enddate', header: '終了日付'},
-      { field: 'costmoney', header: 'コスト'},
-      { field: 'placename', header: '場所'},
-      { field: 'menber', header: '人員'}
+      { field: 'startdate', header: '開始日付' },
+      { field: 'enddate', header: '終了日付' },
+      { field: 'costmoney', header: 'コスト' },
+      { field: 'placename', header: '場所' },
+      { field: 'menber', header: '人員' }
     ];
 
     this.getListData();
@@ -64,6 +66,13 @@ export class SearchTableComponent implements OnInit {
       res => {
         if (res) {
           res['body'].data ? this.items = res['body'].data : this.items = res['body'];
+
+          this.items.forEach(element => {
+            if (element && element.costmoney) {
+              this.summaryZW = _.toNumber(this.summaryZW) + _.toNumber(element.costmoney);
+            }
+          });
+
         }
       },
       err => {
@@ -117,6 +126,8 @@ export class SearchTableComponent implements OnInit {
   // html event
   addNewLine() {
     this.itemSelected = new SkiItemInfo();
+    this.itemSelected.startdate = formatDate(new Date(), this.dateFormat, this.locale);
+    this.itemSelected.enddate = formatDate(new Date(), this.dateFormat, this.locale);
     this.displayDialog = true;
   }
 }

@@ -1,6 +1,4 @@
 body .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
-  background-color: #f4f4f4;
-  color: #333333;
   border: 1px solid #c8c8c8;
   padding: 0.571em 1em;
   text-align: left!important;
@@ -8,6 +6,7 @@ body .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
 
 .no-overflow-div {
   overflow: hidden;
+  height: 450px;
 }
 
 @media screen and (min-width: 40.063em) {
@@ -24,8 +23,9 @@ body .ui-table .ui-table-caption, body .ui-table .ui-table-summary {
     font-weight: bold;
   }
 }
-div{
-  padding-top: 0em;
+
+div {
+  padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
 
@@ -39,6 +39,10 @@ div>>>.ui-datepicker table {
 
 div>>>.ui-datepicker table td {
   padding: 0em;
+}
+
+p-panel>>>.ui-panel {
+  min-width: 800px;
 }
 
 p-dialog>>>.ui-dialog {
@@ -60,4 +64,12 @@ p-dialog>>>.ui-inputtext {
 
 .buttonFirst {
   margin-right: 1em;
+}
+
+.colDateStyle1 {
+  text-align: left;
+}
+
+.colNumberStyle1 {
+  text-align: right;
 }

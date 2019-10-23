@@ -7,11 +7,21 @@
             <div style="float: right;   ">
                 <!-- <p-splitButton label="Dummy" icon="pi pi-check" (onClick)="save()"
                     [model]="menuItem" class="buttonFirst"></p-splitButton> -->
-                <p-button icon="pi pi-check" iconPos="left" label="追加" (click)="addNewLine()" ></p-button>
+                <p-button icon="pi pi-check" iconPos="left" label="追加" (click)="addNewLine()"></p-button>
             </div>
         </div>
     </p-header>
     <p-table [columns]="cols" [value]="items" selectionMode="single">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col style="width: 120px;">
+                <col style="width: 120px;">
+                <col style="width: 120px;">
+                <col>
+                <col style="width: 120px;">
+                <col style="width: 100px;">
+            </colgroup>
+        </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -25,7 +35,8 @@
         </ng-template>
         <ng-template pTemplate="body" let-item let-columnsData="columns" let-i="rowIndex">
             <tr [pSelectableRow]="item">
-                <td *ngFor="let col1 of columnsData">
+                <td *ngFor="let col1 of columnsData" [ngClass]="{'colDateStyle1':col1.field==='startdate' || col1.field==='enddate',
+                    'colNumberStyle1':col1.field==='costmoney' || col1.field==='menber'}">
                     {{item[col1.field]}}
                 </td>
                 <td>
@@ -34,11 +45,15 @@
                 </td>
             </tr>
         </ng-template>
+        <ng-template pTemplate="summary">
+            総合：{{this.summaryZW}}円
+        </ng-template>
     </p-table>
     <p-footer>
     </p-footer>
 </p-panel>
-<p-dialog header="詳細情報" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" resizable="true">
+<p-dialog header="詳細情報" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    resizable="true">
     <div class="ui-g ui-fluid no-overflow-div" *ngIf="itemSelected">
         <div class="ui-g-12">
             <div class="ui-g-12 ui-md-3 titleDIV">
@@ -46,7 +61,8 @@
             </div>
             <div class="ui-g-12 ui-md-9">
                 <p-calendar [(ngModel)]="itemSelected.startdate" dateFormat="yy-mm-dd" dataType="string"
-                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" [readonlyInput]="true"></p-calendar>
+                    [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" [readonlyInput]="true">
+                </p-calendar>
             </div>
         </div>
         <div class="ui-g-12">
@@ -55,7 +71,8 @@
             </div>
             <div class="ui-g-12 ui-md-9">
                 <p-calendar [(ngModel)]="itemSelected.enddate" dateFormat="yy-mm-dd" dataType="string"
-                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" [readonlyInput]="true"></p-calendar>
+                    [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRage" [readonlyInput]="true">
+                </p-calendar>
             </div>
         </div>
         <div class="ui-g-12">
@@ -63,7 +80,10 @@
                 <label for="costmoney">コスト（円）</label>
             </div>
             <div class="ui-g-12 ui-md-9">
-                <input pInputText id="costmoney" [(ngModel)]="itemSelected.costmoney" />
+                <span class="ui-float-label">
+                    <input pInputText id="costmoney" [(ngModel)]="itemSelected.costmoney" />
+                    <label for="costmoney">金額を入力してください。</label>
+                </span>
             </div>
         </div>
         <div class="ui-g-12">
@@ -71,7 +91,10 @@
                 <label for="placename">場所</label>
             </div>
             <div class="ui-g-12 ui-md-9">
-                <input pInputText id="placename" [(ngModel)]="itemSelected.placename" />
+                <span class="ui-float-label">
+                    <input pInputText id="placename" [(ngModel)]="itemSelected.placename" />
+                    <label for="placename">場所を入力してください。</label>
+                </span>
             </div>
         </div>
         <div class="ui-g-12">
