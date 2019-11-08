@@ -64,6 +64,7 @@ export class SearchTableComponent implements OnInit {
       res => {
         if (res) {
           res['body'].data ? this.items = res['body'].data : this.items = res['body'];
+          this.messageService.add({ severity: 'info', summary: 'INFO', detail: 'データ取得できました。' });
         }
       },
       err => {

@@ -4,6 +4,7 @@ import { SearchTableComponent } from './search-table/search-table.component';
 
 const routes: Routes = [
   { path: '', component: SearchTableComponent },
+  { path: '', component: SearchTableComponent },
 
 ];
 
